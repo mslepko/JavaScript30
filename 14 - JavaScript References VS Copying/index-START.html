@@ -8,13 +8,27 @@
 
   <script>
     // start with strings, numbers and booleans
+    let age = 100;
+    age2 = age;
+    console.log(age, age2);
+    age = 200;
+    console.log(age, age2);
+
+    let name = 'Michal';
+    name2 = name;
+    console.log(name, name2);
+    name = 'Michael';
+    console.log(name, name2);
 
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+    const team = players;
+    console.log(players, team);
 
     // You might think we can just do something like this:
+    team[3] = 'Lux';
 
     // however what happens when we update that array?
 
@@ -25,12 +39,17 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
-
+    const team2 = players.slice();
+    team2[3] = 'Lux';
     // one way
 
     // or create a new array and concat the old one in
+    const team3 = [].concat(players);
 
     // or use the new ES6 Spread
+    const team4 = [...players];
+
+    const team5 = Array.from(players);
 
     // now when we update it, the original one isn't changed
 
@@ -43,12 +62,33 @@
     };
 
     // and think we make a copy:
+    // const captain = person; - reference
 
     // how do we take a copy instead?
+    const cap2 = Object.assign({}, person, {age: 12, number: 99});
+    console.table(cap2);
+    console.table(person);
 
     // We will hopefully soon see the object ...spread
+    // const cap3 = {...person};
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+    const michal = {
+      name: 'Michal',
+      age: 100,
+      social: {
+        twiter: '@mslepko',
+        facebook: 'mslepko'
+      }
+    };
+
+    console.log(michal);
+
+    const dev = Object.assign({}, michal); 
+    // need to use clone deep for nested objects
+
+    const dev2 = JSON.parse(JSON.stringify(michal));
 
   </script>
 
